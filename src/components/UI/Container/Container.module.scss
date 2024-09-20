@@ -1,0 +1,12 @@
+.container {
+    box-sizing: border-box;
+    &.flex {
+        display: flex;
+        gap: 15px;
+    }
+    &.flex_vertical {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+    }
+}

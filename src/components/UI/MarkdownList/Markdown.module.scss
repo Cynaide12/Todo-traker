@@ -1,0 +1,8 @@
+.markdown_list{
+    list-style-type: none;
+    display:flex;
+    gap:30px;
+    &.vertical{
+        flex-direction: column;
+    }
+}
