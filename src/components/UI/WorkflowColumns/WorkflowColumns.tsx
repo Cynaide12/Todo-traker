@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Container } from "../Container/Container";
 import cs from "./WorkflowColumns.module.scss"
-import { Todo, TodoStatus } from "../../../types/types";
+import { TodoStatus } from "../../../types/types";
 import { MarkdownList, MarkdownListType } from "../MarkdownList/MarkdownList"
 
-import { TodoCategoryContainer } from "../TodoContainer/TodoCategoryContainer";
+import { TodoCategoryContainer } from "../TodoStatusContainer/TodoStatusContainer";
 import todoStore from "../../../stores/todo-store";
 import { observer } from "mobx-react-lite";
 export const WorkflowColumns: FC = observer(() => {
@@ -19,13 +19,13 @@ export const WorkflowColumns: FC = observer(() => {
 
     const todos = todoStore.todos
 
-    const getCategoryTodos = (status: TodoStatus) => {
+    const getStatusTodos = (status: TodoStatus) => {
         return todos.filter((todo) => todo.status === status)
     }
 
     return (
         <Container className={cs.header}>
-            <MarkdownList listType={MarkdownListType.horizontal} items={columnNames} renderItem={(item) => { return <TodoCategoryContainer status={item} todos={getCategoryTodos(item)} key={item} /> }} />
+            <MarkdownList listType={MarkdownListType.horizontal} items={columnNames} renderItem={(item) => { return <TodoCategoryContainer status={item} todos={getStatusTodos(item)} key={item} /> }} />
         </Container>
     )
 })

@@ -20,6 +20,7 @@ export const AddTodoButton: FC<AddTodoProps> = observer(({ category }) => {
     const AddTodo = (e: React.MouseEvent<HTMLButtonElement>, category: TodoStatus) => {
         e.preventDefault()
         if (!inputRef.current) return
+        if (inputRef.current.value == '') return setIsActive(false)
         const todo: Todo = {
             id: TodoStore.getId,
             title: inputRef.current.value,
