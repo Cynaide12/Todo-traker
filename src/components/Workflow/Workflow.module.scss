@@ -1,5 +1,14 @@
 .workflowWrapper{
     display:flex;
     min-height:100vh;
-    height:100%
+    height:100%;
+    position: relative;
+    flex: 1 1 0%
+}
+.workflow_categoryWrapper{
+    overflow-x:auto;
+    flex-grow: 1;
+    scrollbar-width: auto;
+    scrollbar-color: #fff6 #ffffff27;
+    scrollbar-base-color: #fff;
 }

@@ -1,0 +1,17 @@
+
+.addTodo_btn{
+    background: transparent;
+    border:none;
+    display:flex;
+    gap:8px;
+    width:100%;
+    // max-width:140px;
+    cursor: pointer;
+    align-items: center;
+    font-size:14px;
+    font-family: var(--font-family);
+    img{
+        width:12px;
+        height:12px;
+    }
+}

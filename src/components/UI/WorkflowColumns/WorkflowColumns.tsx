@@ -4,7 +4,7 @@ import cs from "./WorkflowColumns.module.scss"
 import { Todo, TodoStatus } from "../../../types/types";
 import { MarkdownListType } from "../MarkdownList/MarkdownList";
 import MarkdownList from "../MarkdownList/MarkdownList";
-import { TodoCategoryContainer } from "../TodoContainer/TodoContainer";
+import { TodoCategoryContainer } from "../TodoContainer/TodoCategoryContainer";
 export const WorkflowColumns: FC = () => {
     const columnNames = Object.values(TodoStatus)
     const todos: Todo[] = [{
