@@ -1,5 +1,6 @@
 import {ReactNode } from "react";
 import cs from "./Markdown.module.scss"
+import { observer } from "mobx-react-lite";
 
 interface MarkdownListProps<T> {
     className?: string;
@@ -13,9 +14,9 @@ export enum MarkdownListType {
     horizontal = "horizontal"
 }
 
-export default function MarkdownList<T>(props: MarkdownListProps<T>) {
-    const style = [cs.markdown_list, props.listType === MarkdownListType.vertical ? cs.vertical : "", props.className]
+export const  MarkdownList = observer(<T, >({listType, className, renderItem, items}: MarkdownListProps<T>) =>  {
+    const style = [cs.markdown_list, listType === MarkdownListType.vertical ? cs.vertical : "", className]
     return (
-        <ul className={style.join(" ")}>{props.items.map(props.renderItem)}</ul>
+        <ul className={style.join(" ")}>{items.map(renderItem)}</ul>
     )
-}
+})

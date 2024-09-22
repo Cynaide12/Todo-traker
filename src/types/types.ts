@@ -5,10 +5,10 @@ export enum TodoStatus{
 }
 
 export interface Todo{
-    id: string
+    id: number
 	title: string
     body?: string
-    category: string
-    priority: string
+    category?: string
+    priority?: string
     status: TodoStatus
 }

@@ -1,4 +1,4 @@
-export const className = (classArr: string[]) => {
+export const joinClasses = (classArr: string[]) => {
     let str = classArr.filter(Boolean).join(" ")
     return str
 }

@@ -22,3 +22,6 @@ class TodoStore{
         currentTodo = todo
     }
 }
+
+
+export default new TodoStore

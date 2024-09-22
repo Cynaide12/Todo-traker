@@ -9,8 +9,8 @@ interface TodoItemProps {
 export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
     return (
         <Container containerType={ContainerTypes.flexVertical} className={cs.todoItem}>
-            <a href="">{todo.title}</a>
-            <span>{todo.priority}</span>
+            <a href="" className={cs.todoOption}>{todo.title}</a>
+            <span className={cs.todoPriority}>{todo.priority}</span>
         </Container>
     )
 }

@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Todo, TodoStatus } from "../../../types/types"
-import MarkdownList, { MarkdownListType } from "../MarkdownList/MarkdownList"
+import { MarkdownList, MarkdownListType } from "../MarkdownList/MarkdownList"
 import { TodoItem } from "../TodoItem/TodoItem"
 import { Container, ContainerTypes } from "../Container/Container";
 import cs from "./TodoCategoryContainer.module.scss"

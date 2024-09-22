@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import cs from "./Container.module.scss"
-
-export enum ContainerTypes{
+import { joinClasses } from "../../../utils/className";
+export enum ContainerTypes {
     flex = "flex",
     flexVertical = "flex_vertical"
 }
@@ -12,9 +12,11 @@ interface ContainerProps {
     containerType?: ContainerTypes
 }
 export const Container: FC<ContainerProps> = ({ children, className, containerType }) => {
-    const style = [cs.container, containerType ? cs[containerType] : '', className].filter(Boolean)
+    const css = className ? className : ''
+    const type = containerType ? cs[containerType] : ''
+    const style = [cs.container, type, css]
     return (
-        <div className={style.join(" ")}>
+        <div className={joinClasses(style)}>
             {children}
         </div>
     )
