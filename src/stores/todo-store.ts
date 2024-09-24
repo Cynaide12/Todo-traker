@@ -18,8 +18,8 @@ class TodoStore{
     }
 
     updateTodo(todo: Todo){
-        let currentTodo = this.todos.find((item) => item.id == todo.id)
-        currentTodo = todo
+        let index = this.todos.findIndex((item) => item.id == todo.id)
+        this.todos[index] = todo
     }
 }
 

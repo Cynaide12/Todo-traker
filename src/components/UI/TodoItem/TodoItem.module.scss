@@ -10,3 +10,9 @@
 .todoPriority{
     padding:3px 5px
 }
+.dragged{
+    transform: rotate(10deg);
+}
+.ghostDragElem{
+    // display:none;
+}

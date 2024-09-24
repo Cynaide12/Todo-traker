@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { Todo, TodoStatus } from "../../../types/types"
 import { MarkdownList, MarkdownListType } from "../MarkdownList/MarkdownList"
 import { TodoItem } from "../TodoItem/TodoItem"
@@ -6,43 +6,64 @@ import { Container, ContainerTypes } from "../Container/Container";
 import cs from "./TodoStatusContainer.module.scss"
 import { AddTodoButton } from "../../AddTodo/AddTodo";
 import todoStore from "../../../stores/todo-store";
+import { observer } from "mobx-react-lite";
 interface TodoStatusContainerProps {
     status: TodoStatus;
     todos: Todo[]
 }
 
+//TODO: че нибудь придумать с этим закоментированным высером
 
-export const TodoCategoryContainer: FC<TodoStatusContainerProps> = ({ status, todos }) => {
+export const TodoCategoryContainer: FC<TodoStatusContainerProps> = observer(({ status, todos }) => {
     const [isDragged, setIsDragged] = useState(false)
-
-
+    //TODO:если для категории буду делать drag and drop - раскомментировать
+    // const [todoClasses, setTodoClasses] = useState<string[]>([])
     const handleDrop = ((e: React.DragEvent<HTMLDivElement>) => {
         const data = e.dataTransfer.getData("draggedTodo")
         const todo: Todo = JSON.parse(data)
-        //TODO:реализовать коорректное добавление(и удаление(и изменение))
         todo.status = status
-        todo.id = todoStore.getId
-        todoStore.addTodo(todo)
+        todoStore.updateTodo(todo)
+
+        e.currentTarget.style.background = "white"
+
         //TODO: сделать анимку перемещения
         setIsDragged(false)
+
+        e.currentTarget.classList.remove(cs.todoContainer_dragOver)
+
     })
 
 
     const handleDragOver = ((e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault()
-        // console.log("DRAG OVER")
+        e.currentTarget.classList.add(cs.todoContainer_dragOver)
     })
 
+    const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault
+        e.currentTarget.classList.remove(cs.todoContainer_dragOver)
+    }
+
+    //TODO:если для категории буду делать drag and drop - раскомментировать
+    // useEffect(() => {
+    //     if (isDragged) {
+    //         setTodoClasses([...todoClasses, cs.dragged])
+    //     } else {
+    //         setTodoClasses([cs.todoContainer_item])
+    //     }
+    // }, [isDragged])
 
     return (
         <Container containerType={ContainerTypes.flexVertical} className={cs.todoContainer_item}
             onDrop={(e: React.DragEvent<HTMLDivElement>) => { handleDrop(e) }}
             onDragOver={(e: React.DragEvent<HTMLDivElement>) => { handleDragOver(e) }}
+            onDragLeave={(e: React.DragEvent<HTMLDivElement>) => { handleDragLeave(e) }}
         >
             <h2>{status}</h2>
-            <MarkdownList listType={MarkdownListType.vertical} items={todos} renderItem={(item) => <TodoItem todo={item} key={item.id} setIsDragged={setIsDragged} isDragged={isDragged} />} />
+            <MarkdownList listType={MarkdownListType.vertical} items={todos}
+                renderItem={(item) => <TodoItem todo={item} key={item.id} setIsDragged={setIsDragged} isDragged={isDragged} />} />
             <AddTodoButton category={status} />
         </Container >
     )
 
-}
+})
