@@ -1,9 +1,15 @@
 import { makeAutoObservable } from "mobx";
-import { Todo } from "../types/types";
+import { Board, Todo } from "../types/types";
 
 class TodoStore{
     todos: Todo[] = []
-    lastId: number = 0
+    boards: Board[] = [{
+        id: 0,
+        title: "Первая доска"
+    }]
+
+    lastTodoId: number = 0
+    lastBoardId: number = 1
 
     constructor(){
         makeAutoObservable(this)
@@ -13,8 +19,16 @@ class TodoStore{
         this.todos = [...this.todos, todo]
     }
 
-    get getId(){
-        return this.lastId++
+    addBoard(board: Board){
+        this.boards = [...this.boards, board]
+    }
+
+    get getTodoId(){
+        return this.lastTodoId++
+    }
+
+    get getBoardId(){
+        return this.lastBoardId++
     }
 
     updateTodo(todo: Todo){

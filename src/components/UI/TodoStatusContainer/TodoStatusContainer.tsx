@@ -9,12 +9,12 @@ import todoStore from "../../../stores/todo-store";
 import { observer } from "mobx-react-lite";
 interface TodoStatusContainerProps {
     status: TodoStatus;
-    todos: Todo[]
+    todos: Todo[];
+    boardId: number;
 }
 
-//TODO: че нибудь придумать с этим закоментированным высером
 
-export const TodoCategoryContainer: FC<TodoStatusContainerProps> = observer(({ status, todos }) => {
+export const TodoCategoryContainer: FC<TodoStatusContainerProps> = observer(({ status, todos, boardId }) => {
     const [isDragged, setIsDragged] = useState(false)
     //TODO:если для категории буду делать drag and drop - раскомментировать
     // const [todoClasses, setTodoClasses] = useState<string[]>([])
@@ -44,15 +44,6 @@ export const TodoCategoryContainer: FC<TodoStatusContainerProps> = observer(({ s
         e.currentTarget.classList.remove(cs.todoContainer_dragOver)
     }
 
-    //TODO:если для категории буду делать drag and drop - раскомментировать
-    // useEffect(() => {
-    //     if (isDragged) {
-    //         setTodoClasses([...todoClasses, cs.dragged])
-    //     } else {
-    //         setTodoClasses([cs.todoContainer_item])
-    //     }
-    // }, [isDragged])
-
     return (
         <Container containerType={ContainerTypes.flexVertical} className={cs.todoContainer_item}
             onDrop={(e: React.DragEvent<HTMLDivElement>) => { handleDrop(e) }}
@@ -62,7 +53,7 @@ export const TodoCategoryContainer: FC<TodoStatusContainerProps> = observer(({ s
             <h2>{status}</h2>
             <MarkdownList listType={MarkdownListType.vertical} items={todos}
                 renderItem={(item) => <TodoItem todo={item} key={item.id} setIsDragged={setIsDragged} isDragged={isDragged} />} />
-            <AddTodoButton category={status} />
+            <AddTodoButton status={status} boardId={boardId} />
         </Container >
     )
 

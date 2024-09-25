@@ -1,0 +1,28 @@
+.addTodo_openBtn {
+    width: 100%;
+    // max-width:140px;
+    cursor: pointer;
+}
+
+.addTodo_btn {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top:5px;
+}
+
+.addTodo_submit {
+    text-align: left;
+}
+
+.addTodo_icon {
+    img {
+        width: 12px;
+        height: 12px;
+        object-position: bottom;
+    }
+}
+
+.addTodo_input{
+    
+}

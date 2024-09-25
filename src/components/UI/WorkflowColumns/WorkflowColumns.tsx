@@ -7,7 +7,7 @@ import { MarkdownList, MarkdownListType } from "../MarkdownList/MarkdownList"
 import { TodoCategoryContainer } from "../TodoStatusContainer/TodoStatusContainer";
 import todoStore from "../../../stores/todo-store";
 import { observer } from "mobx-react-lite";
-export const WorkflowColumns: FC = observer(() => {
+export const WorkflowColumns: FC<{ boardId: number }> = observer(({ boardId }) => {
     const columnNames = Object.values(TodoStatus)
     // const todos: Todo[] = [{
     //     id: 0,
@@ -23,9 +23,10 @@ export const WorkflowColumns: FC = observer(() => {
         return todos.filter((todo) => todo.status === status)
     }
 
+
     return (
         <Container className={cs.header}>
-            <MarkdownList listType={MarkdownListType.horizontal} items={columnNames} renderItem={(item) => { return <TodoCategoryContainer status={item} todos={getStatusTodos(item)} key={item} /> }} />
+            <MarkdownList listType={MarkdownListType.horizontal} items={columnNames} renderItem={(item) => { return <TodoCategoryContainer status={item} boardId={boardId} todos={getStatusTodos(item)} key={item} /> }} />
         </Container>
     )
 })

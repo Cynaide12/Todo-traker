@@ -1,10 +1,10 @@
-import { TrakerPage } from '../pages/Traker'
-import { Workflow } from './Workflow/Workflow'
-
+import { routes } from '../navigation/routes'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function App() {
+  const router = createBrowserRouter(routes)
 
   return (
-   <TrakerPage />
+    <RouterProvider router={router} />
   )
 }
 

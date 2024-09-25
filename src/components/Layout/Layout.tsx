@@ -1,11 +1,11 @@
-import { Children, FC, ReactNode } from "react";
+import { FC } from "react";
 import cs from "./Layout.module.scss"
+import { Navbar } from "../Navbar/Navbar";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-    children: ReactNode
-}
-export const Layout: FC<LayoutProps> = ({ children }) => {
+export const Layout: FC = () => {
     return <div className={cs.layout}>
-        {children}
+        <Navbar />
+        <Outlet />
     </div>
 }

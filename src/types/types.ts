@@ -1,3 +1,5 @@
+import { ComponentType } from "react"
+
 export enum TodoStatus{
     new = "В планах",
     processed = "В процессе",
@@ -11,4 +13,10 @@ export interface Todo{
     category?: string
     priority?: string
     status: TodoStatus
+    boardId: number
+}
+
+export interface Board{
+    id: number,
+    title: string,
 }
